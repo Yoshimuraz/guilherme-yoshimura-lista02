@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>tema.html</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: #ffffff;
+    color: #000000;
+  }
+  h1 {
+    font-size: 28px;
+  }
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  body.escuro {
+    background-color: #000000;
+    color: #ffffff;
+  }
+</style>
+</head>
+<body>
+
+<h1>Modo Claro/Escuro</h1>
+<button id="btnTema">Mudar Tema</button>
+
+<script>
+  const btnTema = document.getElementById('btnTema');
+
+  btnTema.addEventListener('click', function() {
+    document.body.classList.toggle('escuro');
+  });
+</script>
+
+</body>
+</html>

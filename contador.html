@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>contador.html</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+  }
+  h1 {
+    font-size: 42px;
+    margin-bottom: 40px;
+  }
+  button {
+    font-size: 18px;
+    padding: 12px 24px;
+    margin: 0 8px;
+    cursor: pointer;
+  }
+  p {
+    font-size: 24px;
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Contador de Cliques</h1>
+
+<button id="btnClicar">Clique aqui!</button>
+<button id="btnZerar">Zerar contador</button>
+
+<p>Cliques: <span id="contador">0</span></p>
+
+<script>
+  let cliques = 0;
+  const contadorSpan = document.getElementById('contador');
+
+  document.getElementById('btnClicar').addEventListener('click', function() {
+    cliques++;
+    contadorSpan.textContent = cliques;
+  });
+
+  document.getElementById('btnZerar').addEventListener('click', function() {
+    cliques = 0;
+    contadorSpan.textContent = cliques;
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>verificadorIdade.html</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .container {
+    background-color: #b8b3f0;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    padding-bottom: 15px;
+  }
+  .container h1 {
+    color: white;
+    font-size: 22px;
+    padding: 15px;
+    margin: 0;
+  }
+  .card {
+    background-color: white;
+    margin: 0 20px;
+    border-radius: 6px;
+    padding: 20px;
+  }
+  .campo {
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  .campo input[type="number"] {
+    width: 60px;
+    padding: 3px;
+  }
+  #resultado {
+    color: #8a5a2b;
+    font-size: 14px;
+    margin-top: 12px;
+    min-height: 18px;
+  }
+  #foto {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 15px;
+    display: none;
+    border: 3px solid white;
+  }
+  button {
+    padding: 4px 14px;
+    cursor: pointer;
+  }
+  footer {
+    color: white;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Verificador de Idade</h1>
+  <div class="card">
+    <div class="campo">
+      Ano de Nascimento: <input type="number" id="ano" value="1994">
+    </div>
+    <div class="campo">
+      Sexo:
+      <label><input type="radio" name="sexo" value="masculino"> Masculino</label>
+      <label><input type="radio" name="sexo" value="feminino" checked> Feminino</label>
+    </div>
+    <button id="btnVerificar">Verificar</button>
+    <div id="resultado"></div>
+    <img id="foto" src="" alt="Foto">
+  </div>
+  <footer>© Uniderp</footer>
+</div>
+
+<script>
+  const imagens = {
+    'bebe-masculino': 'bebe_menino.jpg',
+    'bebe-feminino': 'bebe_menina.jpg',
+    'crianca-masculino': 'crianca_menino.jpg',
+    'crianca-feminino': 'crianca_menina.jpg',
+    'adolescente-masculino': 'adolescente_menino.jpg',
+    'adolescente-feminino': 'adolescente_menina.jpg',
+    'adulto-masculino': 'adulto_menino.jpg',
+    'adulto-feminino': 'adulta_menina.webp',
+    'idoso-masculino': 'idoso.jpg',
+    'idoso-feminino': 'idosa.jpg'
+  };
+
+  document.getElementById('btnVerificar').addEventListener('click', function() {
+    const anoNascimento = parseInt(document.getElementById('ano').value);
+    const sexo = document.querySelector('input[name="sexo"]:checked').value;
+    const anoAtual = new Date().getFullYear();
+    const idade = anoAtual - anoNascimento;
+
+    let categoria;
+    if (idade <= 2) categoria = 'bebe';
+    else if (idade <= 12) categoria = 'crianca';
+    else if (idade <= 17) categoria = 'adolescente';
+    else if (idade <= 59) categoria = 'adulto';
+    else categoria = 'idoso';
+
+    const textoSexo = sexo === 'masculino' ? 'homem' : 'mulher';
+
+    document.getElementById('resultado').textContent =
+      `Detectamos ${textoSexo} com ${idade} anos.`;
+
+    const chave = categoria + '-' + sexo;
+    const foto = document.getElementById('foto');
+    foto.src = imagens[chave];
+    foto.style.display = 'inline-block';
+  });
+</script>
+
+</body>
+</html>

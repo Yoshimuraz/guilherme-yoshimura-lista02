@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>tabuada.html</title>
+</head>
+
+<body>
+
+    <h1>tabuada.html</h1>
+
+    <p>Escreva um número e veja a tabuada dele</p>
+
+    <input type="number" id="numero" value="5" onchange="calcular()">
+
+    <p>Tabuada do número: <strong id="numeroEscolhido">5</strong></p>
+
+    <div id="resultado"></div>
+
+    <script>
+
+        function calcular() {
+
+            var numero = Number(document.getElementById("numero").value);
+
+            document.getElementById("numeroEscolhido").innerText = numero;
+
+            var resultado = "";
+
+            for (var i = 0; i <= 10; i++) {
+
+                resultado += (numero * i) + "<br>";
+
+            }
+
+            document.getElementById("resultado").innerHTML = resultado;
+
+        }
+
+        calcular();
+
+    </script>
+
+</body>
+</html>

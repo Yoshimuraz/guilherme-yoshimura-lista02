@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>presenca.html</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+  }
+  .item {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .item input {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+  }
+  button {
+    background-color: #2e8b3d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  button:hover {
+    background-color: #256e31;
+  }
+  h2 {
+    margin-top: 30px;
+  }
+  .presente {
+    color: green;
+    font-weight: bold;
+  }
+  .ausente {
+    color: red;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<h1>presenca.html</h1>
+
+<div id="lista">
+  <label class="item"><input type="checkbox" checked value="João"> João</label>
+  <label class="item"><input type="checkbox" checked value="Márcio"> Márcio</label>
+  <label class="item"><input type="checkbox" value="Fabiana"> Fabiana</label>
+  <label class="item"><input type="checkbox" value="Jorge"> Jorge</label>
+  <label class="item"><input type="checkbox" value="Silvana"> Silvana</label>
+  <label class="item"><input type="checkbox" checked value="Luiz"> Luiz</label>
+  <label class="item"><input type="checkbox" checked value="Carlos"> Carlos</label>
+  <label class="item"><input type="checkbox" checked value="Pablo"> Pablo</label>
+</div>
+
+<button id="btnConfirmar">Confirmar Presença</button>
+
+<div id="resultado"></div>
+
+<script>
+  document.getElementById('btnConfirmar').addEventListener('click', function() {
+    const checkboxes = document.querySelectorAll('#lista input[type="checkbox"]');
+    const presentes = [];
+    const ausentes = [];
+
+    checkboxes.forEach(function(cb) {
+      if (cb.checked) {
+        presentes.push(cb.value);
+      } else {
+        ausentes.push(cb.value);
+      }
+    });
+
+    const presentesHtml = presentes.map(nome => `<span class="presente">${nome}</span>`).join(', ');
+    const ausentesHtml = ausentes.map(nome => `<span class="ausente">${nome}</span>`).join(', ');
+
+    document.getElementById('resultado').innerHTML = `
+      <h2>Resultado</h2>
+      <p><strong>Presentes:</strong> ${presentesHtml || 'Nenhum'}</p>
+      <p><strong>Ausentes:</strong> ${ausentesHtml || 'Nenhum'}</p>
+    `;
+  });
+</script>
+
+</body>
+</html>
